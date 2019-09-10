@@ -1,3 +1,7 @@
 #repos-list li {
   list-style: disc;
 }
+
+#usersInput {
+  margin-bottom: 50px;
+}
