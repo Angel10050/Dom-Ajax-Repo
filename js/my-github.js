@@ -10,21 +10,11 @@ function pass() {
     .then(element => {
       element.forEach(repose => {
         let myReposCount = document.querySelector("#repos-count");
-
-        let createLi = document.createElement("li");
-        let myATag = document.createElement("a");
-
-        myUl.appendChild(createLi);
-        createLi.appendChild(myATag);
-
-        myATag.className = "aTag";
-        createLi.className = "eachRepository";
-
-        myATag.id = repose.owner.login;
-        myATag.innerHTML = repose.name;
-        myATag.href = repose.html_url;
+        myUl.innerHTML += `<li class="repo"> 
+      <a target="b_blank" href= "${repose.html_url}"> ${repose.name} </a>
+      </li>`;
         myReposCount.innerHTML = element.length;
       });
-    });
+    }, (myUl.innerHTML = ""));
 }
 button.addEventListener("click", pass);
