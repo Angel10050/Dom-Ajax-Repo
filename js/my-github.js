@@ -1,28 +1,28 @@
 // Write code here to communicate with Github
 let myUl = document.querySelector("#repos-list");
 let userInput = document.querySelector("#usersInput");
-userInput.value;
 
-let userName = userInput.value;
+function pass() {
+  let userName = userInput.value;
+  return fetch(`https://api.github.com/users/${userName}/repos`)
+    .then(repos => repos.json())
+    .then(element => {
+      element.forEach(repos => {
+        let myReposCount = document.querySelector("#repos-count");
 
-fetch(`https://api.github.com/users/${userName}/repos`)
-  .then(repos => repos.json())
-  .then(element => {
-    element.forEach(repos => {
-      let myReposCount = document.querySelector("#repos-count");
+        let createLi = document.createElement("li");
+        let myATag = document.createElement("a");
 
-      let createLi = document.createElement("li");
-      let myATag = document.createElement("a");
+        myUl.appendChild(createLi);
+        createLi.appendChild(myATag);
 
-      myUl.appendChild(createLi);
-      createLi.appendChild(myATag);
+        myATag.className = "aTag";
+        createLi.className = "eachRepository";
 
-      myATag.className = "aTag";
-      createLi.className = "eachRepository";
-
-      myATag.id = repos.owner.login;
-      myATag.innerHTML = repos.name;
-      myATag.href = repos.html_url;
-      myReposCount.innerHTML = element.length;
+        myATag.id = repos.owner.login;
+        myATag.innerHTML = repos.name;
+        myATag.href = repos.html_url;
+        myReposCount.innerHTML = element.length;
+      });
     });
-  });
+}
