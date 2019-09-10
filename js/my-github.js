@@ -3,13 +3,8 @@ let myUl = document.querySelector("#repos-list");
 let userInput = document.querySelector("#usersInput");
 userInput.value;
 
-function addingName() {
-  let value = userInput.value;
-  userName = value;
-  return nombreDeUsuario;
-}
+let userName = userInput.value;
 
-let nombreDeUsuario;
 fetch(`https://api.github.com/users/${userName}/repos`)
   .then(repos => repos.json())
   .then(element => {
