@@ -1,13 +1,14 @@
 // Write code here to communicate with Github
 let myUl = document.querySelector("#repos-list");
 let userInput = document.querySelector("#usersInput");
+let button = document.querySelector("#button");
 
 function pass() {
   let userName = userInput.value;
   return fetch(`https://api.github.com/users/${userName}/repos`)
-    .then(repos => repos.json())
+    .then(reposi => reposi.json())
     .then(element => {
-      element.forEach(repos => {
+      element.forEach(repose => {
         let myReposCount = document.querySelector("#repos-count");
 
         let createLi = document.createElement("li");
@@ -19,10 +20,11 @@ function pass() {
         myATag.className = "aTag";
         createLi.className = "eachRepository";
 
-        myATag.id = repos.owner.login;
-        myATag.innerHTML = repos.name;
-        myATag.href = repos.html_url;
+        myATag.id = repose.owner.login;
+        myATag.innerHTML = repose.name;
+        myATag.href = repose.html_url;
         myReposCount.innerHTML = element.length;
       });
     });
 }
+button.addEventListener("click", pass);
